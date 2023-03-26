@@ -46,7 +46,6 @@ def restore_path( connections ):
     These elements are indices of teh vertices, connected to this vertex
     Guarantees that first index < last index
     """
-    global startpoint, finishpoint
     if startpoint is None:
         #there are 2 nodes with valency 1 - start and end. Get them.
         for idx, conn in enumerate(connections):

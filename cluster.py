@@ -76,7 +76,6 @@ def cluster(points, radius, maxClusterList, ms):
     return maxClusterList
 
 def getMpPoints(point):
-    global clustersList, mpPoints
     ii = 0
     pointsList = []
     while ii < len(mpPoints):
@@ -89,12 +88,10 @@ def getMpPoints(point):
     clustersList.append(pointsList)
 
 def rmSmallClusters(cluster):
-    global clustersList
     if len(cluster)-1 < mpMS:
         clustersList.remove(cluster)
 
 def rmMpLongestList(cluster):
-    global clustersList
     item = cluster.pop()
     if len(cluster)-1 < mpMS:
         clustersList.remove(cluster)
@@ -107,7 +104,6 @@ def rmMpLongestList(cluster):
                 break
 
 def rmLongestList(item, ms):
-    global clustersList
     for cluster in clustersList:
         if len(cluster)-1 < ms:
             clustersList.remove(cluster)
