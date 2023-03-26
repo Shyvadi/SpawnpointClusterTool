@@ -162,8 +162,7 @@ def getPoints(geofences, db, args):
         elif args.timers == 'no':
             scmd_sql = scmd_sql + ' despawn_sec IS NULL AND '
         elif args.timers == 'all':
-            # No change needed
-            scmd_sql = scmd_sql
+            pass
         elif args.timers != 'yes' or args.timers != 'no' or args.timers != 'all':
             print('{} is not a valid argument for --timers'.format(args.timers))
             sys.exit(1)
