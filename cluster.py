@@ -336,7 +336,7 @@ def main(args):
     geofences = datajson['area'] # Get the geofence(s) from the json
     for fence in geofences:
         firstpt = fence[0]
-        lastpt = fence[len(fence)-1]
+        lastpt = fence[-1]
         if firstpt != lastpt:
             fence.append(firstpt)
             print('Updated last point in geofence to match the first point')
@@ -611,7 +611,7 @@ def createcircles(args):
     geofences = datajson['area'] # Get the geofence(s) from the json
     for fence in geofences:
         firstpt = fence[0]
-        lastpt = fence[len(fence)-1]
+        lastpt = fence[-1]
         if firstpt != lastpt:
             fence.append(firstpt)
             print('Updated last point in geofence to match the first point')
