@@ -870,10 +870,13 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.genivlist:
-        if args.save_query:
-            if not args.save_un or not args.save_pw:
-                print('You must specify both a site username and password to continue with saving to the database.')
-                sys.exit(1)
+        if (
+            args.save_query
+            and not args.save_un
+            or not args.save_pw
+        ):
+            print('You must specify both a site username and password to continue with saving to the database.')
+            sys.exit(1)
         genivs(args)
         sys.exit(1)
     if args.justsort:
@@ -900,14 +903,17 @@ if __name__ == "__main__":
     if not args.spawnpoints and not args.pokestops and not args.gyms and not args.s2cells:
         print('You must choose to include either spawnpoints, gyms, pokestops, or S2Cells for the query.')
         sys.exit(1)
-    if args.spawnpoints or args.pokestops or args.gyms or args.s2cells:
-        if args.save_query:
-            if not args.save_un or not args.save_pw:
-                print('You must specify both a site username and password to continue with saving to the database.')
-                sys.exit(1)
-            if not args.save_cp:
-                print('You must specify at least one instance to save to.')
-                sys.exit(1)
+    if (
+        args.spawnpoints or args.pokestops or args.gyms
+        or args.s2cells
+        and args.save_query
+    ):
+        if not args.save_un or not args.save_pw:
+            print('You must specify both a site username and password to continue with saving to the database.')
+            sys.exit(1)
+        if not args.save_cp:
+            print('You must specify at least one instance to save to.')
+            sys.exit(1)
 
     main(args)
 
