@@ -260,9 +260,9 @@ def tspsolver(filename, args):
 
     # Create a matrix and fill it with distances based on all the possible combinations
     D = numpy.zeros((len(tsppoints),len(tsppoints)))
-    for i in range(len(tsppoints)):
-        for j in range(len(tsppoints)):
-            D[i][j]=numpy.linalg.norm(numpy.subtract(tsppoints[i],tsppoints[j]))
+    for i, _ in enumerate(tsppoints):
+        for j, item in enumerate(tsppoints):
+            D[i][j]=numpy.linalg.norm(numpy.subtract(tsppoints[i],item))
 
     # Apply the greedy TSP to the distances and return a list of indices
     tour = solve_tsp(D, startpt = args.startpt, finishpt=args.finishpt)
