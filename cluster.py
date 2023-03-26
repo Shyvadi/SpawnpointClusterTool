@@ -54,7 +54,6 @@ def cluster(points, radius, maxClusterList, ms):
     clustersList = clustersList._getvalue()
     while len(clustersList) > 0 and done == 0:
         start_time = time.time()
-#        print(len(clustersList))
         longestList = max(clustersList, key=len)
         if len(longestList)-1 >= ms and len(longestList)-1 > 0:
             clustersList.remove(longestList)
@@ -63,13 +62,8 @@ def cluster(points, radius, maxClusterList, ms):
                     maxClusterList.append(item[1])
                 else:
                     rmLongestList(item, ms)
-#                    staticClustersList = clustersList._getvalue()
-#                    for cluster in staticClustersList:
-#                        cluster.append(item)
-#                    pool.map(rmMpLongestList, staticClustersList)
         else:
             done = 1
-#        print('Completed one cluster in {} seconds.\n'.format(time.time() - start_time))
 
     pool.close()
     pool.join()
@@ -421,7 +415,6 @@ def main(args):
             print('{} clusters with {} or more gyms in them.\n'.format(rowcount, args.minraid))
 
     if args.s2cells:
-        #points = gympointssql.fetchall()
         points = s2cellpoints(geofences, args)
 
         print('Processing', len(points), 'S2Cells...')
@@ -785,7 +778,6 @@ def saveclusters(db, filename, args):
             cmd_sql = '''UPDATE instance SET data = JSON_SET(data, '$.area', JSON_ARRAY(%(clu)s)) WHERE name = '%(ins)s';''' % {'clu':rows[idx], 'ins': instance}
             updateOutput = db.execute_sql(cmd_sql)
             db.commit()
-            #JSON_OBJECT("lat", 50.7168364771429, "lon", 10.4136298762618),JSON_OBJECT("lat", 50.7168364771428, "lon", 10.4136298762617)
         else:
             print('{} is not a cluster circle instance.'.format(instance))
             sys.exit(1)

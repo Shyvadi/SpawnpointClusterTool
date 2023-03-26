@@ -156,11 +156,9 @@ def solve_tsp( distances, optim_steps=3, pairs_by_dist=pairs_by_dist, startpt=No
         edges_left = N-1
         for i,j in possible_edges():
             if (startpoint is not None and finishpoint is not None) and edges_left!=1 and edge_connects_endpoint_segments(i,j):
-                #print(f"#### disallow {i}, {j} because premature termination")
                 continue #don't allow premature path termination
             
             
-            #print(f"####add edge {i}, {j} of len {distances[i][j]}")
             
             connect_vertices(i,j)
             edges_left -= 1
